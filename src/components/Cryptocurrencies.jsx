@@ -3,6 +3,7 @@ import millify from 'millify'
 import { Link } from 'react-router-dom'
 import { Card, Row, Col, Input } from 'antd'
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import { Loader } from '../components'
 
 
 
@@ -11,17 +12,18 @@ const Cryptocurrencies = ({ simplified }) => {
     const { data, isFetching } = useGetCryptosQuery(count);
     const [cryptos, setCryptos] = useState([]);
     const [searchTerm, setSearchTerm] = useState("")
+    console.log(data)
 
     useEffect(() => {
         setCryptos(data?.data?.coins)
-    }, [count])
+    }, [data?.data?.coins, count])
 
     useEffect(() => {
         const filteredData = data?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
         setCryptos(filteredData)
-    }, [searchTerm])
+    }, [data?.data?.coins, searchTerm])
 
-    if (isFetching) return "Loading..."
+    if (isFetching) return <Loader />
 
     return (
         <>
@@ -44,7 +46,7 @@ const Cryptocurrencies = ({ simplified }) => {
                             <Link to={`/cryptocurrencies/${currency.uuid}`}>
                                 <Card
                                     title={`${currency.rank}. ${currency.name}`}
-                                    extra={<img className='crypto-image' src={currency.iconUrl} alt="ctypto-image" />}
+                                    extra={<img className='crypto-image' src={currency.iconUrl} alt="ctypto" />}
                                     hoverable
                                 >
                                     <p>Price: $ {millify(currency.price)}</p>

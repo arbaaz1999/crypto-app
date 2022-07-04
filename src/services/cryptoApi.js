@@ -26,25 +26,9 @@ export const cryptoApi = createApi({
     })
 })
 
-export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
-
-
-
-
-/* const options = {
-    method: 'GET',
-    url: 'https://coinranking1.p.rapidapi.com/coins',
-    params: {
-        referenceCurrencyUuid: 'yhjMzLPhuIDl',
-        timePeriod: '24h',
-        'tiers[0]': '1',
-        orderBy: 'marketCap',
-        orderDirection: 'desc',
-        limit: '50',
-        offset: '0'
-    },
-    headers: {
-        'X-RapidAPI-Key': '8acf594958msh489ccf1b82b00a7p14de55jsn6086b31a81d6',
-        'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-    }
-}; */
+export const {
+    useGetCryptosQuery,
+    useGetExchangesQuery,
+    useGetCryptoDetailsQuery,
+    useGetCryptoHistoryQuery
+} = cryptoApi;

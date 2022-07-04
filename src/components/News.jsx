@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Select, Typography, Row, Col, Avatar, Card, Divider } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 // import { globalCryptos } from './Cryptocurrencies'
 
 const demoImage = 'https://media.istockphoto.com/photos/wooden-block-cube-stacking-as-step-stair-business-concept-growth-picture-id1337276175'
@@ -13,7 +14,7 @@ const News = ({ simplified }) => {
     const { data: cryptoNews } = useGetCryptoNewsQuery({ category: newsCategory, count });
     const { data: currencies } = useGetCryptosQuery(100)
 
-    if (!cryptoNews?.value) return "Loading..."
+    if (!cryptoNews?.value) return <Loader />
 
     return (
         <>
